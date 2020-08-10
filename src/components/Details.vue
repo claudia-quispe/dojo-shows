@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col s3 m6">
+        <div class="col s10 m10">
         <ul class="collection with-header">
             <li class="collection-header"><h5>{{title}}</h5></li>
             <li class="collection-item">Season: {{season}}</li>
@@ -37,7 +37,7 @@ export default {
             this.title = Show.title;
             this.season = Show.season;
             this.network = Show.network;
-            this.isCurrent = Show.isCurrent,
+            this.isCurrent = Show.isCurrent ? 'yes' : 'no';
             this.genres = Show.genres, 
             console.log(datos.data)
         });

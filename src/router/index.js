@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Shows from '@/components/Shows'
 import Details from '@/components/Details';  // asumiendo que hicimos este componente
 import Edit from '@/components/Edit';
+import NotFound from '@/components/NotFound';
 
 Vue.use(VueRouter);    // instalamos explícitamente el router
 
@@ -19,8 +20,12 @@ export default new VueRouter({
             component: Details
         },
         {
-            path: '/edit/', 
+            path: '/shows/:id', 
             component: Edit
+        },
+        {
+            path: '*', 
+            component: NotFound
         },
         
 

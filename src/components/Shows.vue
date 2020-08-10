@@ -2,7 +2,7 @@
   <div>
     <div class="container">
     <div class="row">
-      <div class="col s10 m10">
+      <div class="col s12 m12">
         <h4>TV Shows</h4>
         <table>
           <thead>
@@ -11,7 +11,8 @@
               <th>Season</th>
               <th>Network</th>
               <th>Is Current</th>
-              <th>Genres</th>   
+              <th>Genres</th>
+              <th>Actions</th>      
             </tr>
           </thead>
           <tbody>
@@ -21,6 +22,12 @@
               <td>{{ show.network }}</td>
               <td>{{ show.isCurrent }}</td>
               <td><span v-for="(genre, i) in show.genres" :key="i">{{ genre }} </span></td>
+              <td> 
+                <router-link :to="{path: '/shows/' + show.id}"><i class="material-icons">edit</i></router-link>
+              </td>
+              <td>
+                <a href="#" @click.prevent="delete_show(show.id)"><i class="material-icons">delete</i></a>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -51,11 +58,11 @@
           <div class="col s6 m10">
             <p>Is current
             <label>
-              <input class="with-gap" name="group1" type="radio"  />
+              <input class="with-gap" name="group1" value="yes" type="radio" v-model="isCurrent" />
               <span>Yes</span>
             </label>
             <label>
-              <input class="with-gap" name="group1" type="radio"  />
+              <input class="with-gap" name="group1" value="no" type="radio" v-model="isCurrent" />
               <span>No</span>
             </label>
           </p>
@@ -73,7 +80,7 @@ import { db } from '@/firebase'
 
 export default {
   name: 'Shows',
-  // acá van mis datos propios
+  // acá van mis datos de Dojo shows
   data() {
     return {
       shows: [],
@@ -102,6 +109,14 @@ export default {
       this.new_season = '';
       this.new_network = '';
       this.new_genres = '';
+    },
+
+    delete_show(id_shows) {
+      console.log(id_shows);
+      const respuesta = confirm('¿Desea eliminar este elemento?');
+      if (respuesta == false) { return; }
+      db.collection("shows").doc(id_shows).delete();
+
     }
   },
   // Esta función firestore vincula nuestro shows a la variable de shows contenida en los datos en tiempo real
