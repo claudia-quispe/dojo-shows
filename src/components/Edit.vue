@@ -3,20 +3,20 @@
         <div class="row">
             <div class="col s10 m10">
                 <h5>Edit show</h5>
-                <form class="row" @submit.prevent="edit_show">
-                    <div class="input-field col s12">
+                <form action="" class="row" @submit.prevent="edit_show">
+                    <div class="input-field">
                         <input required="required" type="text" id="title" v-model="title" />
                         <label>Titulo: </label>
                     </div>
-                    <div class="input-field col s12">
+                    <div class="input-field">
                         <input required="required" type="text" class="validate" id="season" v-model="season">
                         <label class="active" for="disabled">Season: </label>
                     </div>  
-                    <div class="input-field col s12">
+                    <div class="input-field">
                         <input required="required" type="text" class="validate" v-model="network">
                         <label class="active" for="disabled">Network: </label>
                     </div>    
-                    <div class="input-field col s12">
+                    <div class="input-field">
                         <input required="required" type="text" class="validate" v-model="genres">
                         <label class="active" for="disabled">Genre: </label>
                     </div>
